@@ -1,1 +1,3 @@
-CV Application project
+CV Application project.
+
+HTML | Bootstrap CSS | React class component

@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-size: small;
+  box-sizing: border-box;
+}
+
+ion-icon {
+  margin: 0.3em;
+  font-size: 1.5rem;
+}
+
+ion-icon:hover {
+  cursor: pointer;
+}
+
+button {
+  width: 5em;
+}
+
+.input-group {
+  width: 20em;
+  height: 3em;
+  margin-bottom: 0.8em;
+}
