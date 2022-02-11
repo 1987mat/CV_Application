@@ -10,129 +10,85 @@ class App extends Component {
     super(props);
 
     this.state = {
-      firstName: {
-        editMode: false,
-        text: 'First Name',
-        editCompleted: false,
-      },
-      lastName: {
-        editMode: false,
-        text: 'Last Name',
-        editCompleted: false,
-      },
-      education: {
-        titles: [],
-        editStatus: false,
-        title: { degree: '', university: '', startDate: '', endDate: '' },
-      },
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      showFirstName: false,
+      showLastName: false,
+      educationEditStatus: false,
     };
   }
 
+  // User clicks edit icon
   handleClick = (e) => {
+    // Edit Mode
     if (e.target.id === 'first') {
       this.setState({
-        firstName: {
-          editMode: !this.state.editMode,
-          text: this.state.firstName.text,
-        },
+        showFirstName: true,
       });
-    } else if (e.target.id === 'last') {
+      // Editing completed
+    } else if (e.target.id === 'first-name') {
       this.setState({
-        lastName: {
-          editMode: !this.state.lastName.editMode,
-          text: this.state.lastName.text,
-        },
+        firstName: this.state.firstName,
+        showFirstName: false,
+      });
+    }
+    //Edit Mode
+    if (e.target.id === 'last') {
+      this.setState({
+        showLastName: true,
+      });
+      // Editing completed
+    } else if (e.target.id === 'last-name') {
+      this.setState({
+        lastName: this.state.lastName,
+        showLastName: false,
       });
     }
   };
 
+  // Get input values from users
   handleChange = (e) => {
-    if (e.target.id === 'first-name') {
+    if (e.target.id === 'first-name-input') {
       this.setState({
-        firstName: {
-          editMode: this.state.firstName.editMode,
-          text: e.target.value,
-          editCompleted: this.state.editCompleted,
-        },
+        firstName: e.target.value,
       });
-    }
-
-    if (e.target.id === 'last-name') {
+    } else {
       this.setState({
-        lastName: {
-          editMode: this.state.lastName.editMode,
-          text: e.target.value,
-          editCompleted: this.state.editCompleted,
-        },
+        lastName: e.target.value,
       });
     }
   };
 
-  handleConfirm = (e) => {
-    if (this.state.firstName.editMode) {
-      if (e.target.id !== 'first-name') {
-        this.setState({
-          firstName: {
-            editMode: !this.state.firstName.editMode,
-            text: this.state.firstName.text,
-            editCompleted: true,
-          },
-        });
-      }
-    } else if (this.state.lastName.editMode) {
-      if (e.target.id !== 'last-name') {
-        this.setState({
-          lastName: {
-            editMode: !this.state.lastName.editMode,
-            text: this.state.lastName.text,
-            editCompleted: true,
-          },
-        });
-      }
-    }
-  };
-
+  // Add education button
   handleClickAdd = () => {
     this.setState({
-      education: {
-        editStatus: !this.state.education.editStatus,
-      },
+      educationEditStatus: !this.state.educationEditStatus,
     });
+  };
+
+  handleChangeEducation = (e) => {
+    const value = e.target.value;
   };
 
   submitForm = (e) => {
     e.preventDefault();
-
-    // Get values
-    // let degree = document.getElementById('degree');
-    // let university = document.getElementById('university');
-    // let startDate = document.getElementById('date-start');
-    // let endDate = document.getElementById('date-end');
-
-    // const title = {
-    //   degree: degree.value,
-    //   university: university.value,
-    //   startDate: startDate.value,
-    //   endDate: endDate.value,
-    // };
-
-    // const updatedTitles = [
-    //   ...this.state.education.titles,
-    //   { id: 1, name: 'mat' },
-    // ];
-
-    this.setState({
-      education: {
-        editStatus: false,
-      },
-    });
   };
+
+  // const updatedTitles = [
+  //   ...this.state.education.titles,
+  //   { id: 1, name: 'mat' },
+  // ];
+
+  // this.setState({
+  //   education: {
+  //     editStatus: false,
+  //   },
+  // });
+  // };
 
   closeEducationForm = () => {
     this.setState({
-      education: {
-        editStatus: false,
-      },
+      educationEditStatus: false,
     });
   };
 
@@ -145,25 +101,16 @@ class App extends Component {
         <main>
           <Info
             handleClick={this.handleClick}
-            handleConfirm={this.handleConfirm}
             handleChange={this.handleChange}
-            defaultTextFirst={this.state.firstName.text}
-            defaultTextLast={this.state.lastName.text}
-            editModeFirstName={this.state.firstName.editMode}
-            editTextFirstName={this.state.firstName.text}
-            editFirstCompleted={this.state.firstName.editCompleted}
-            editModeLastName={this.state.lastName.editMode}
-            editTextLastName={this.state.lastName.text}
-            editLastCompleted={this.state.lastName.editCompleted}
+            showFirstName={this.state.showFirstName}
+            showLastName={this.state.showLastName}
+            firstName={this.state.firstName}
+            lastName={this.state.lastName}
           />
           <Education
             handleClickAdd={this.handleClickAdd}
-            handleChange={this.handleChange}
-            editStatus={this.state.education.editStatus}
-            degree={this.state.education.degree}
-            university={this.state.education.university}
-            startDate={this.state.education.startDate}
-            endDate={this.state.education.endDate}
+            handleChangeEducation={this.handleChangeEducation}
+            educationEditStatus={this.state.educationEditStatus}
             closeEducationForm={this.closeEducationForm}
             submitForm={this.submitForm}
           />

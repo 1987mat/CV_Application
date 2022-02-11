@@ -4,12 +4,8 @@ class Education extends Component {
   render() {
     const {
       handleClickAdd,
-      editStatus,
-      degree,
-      university,
-      startDate,
-      endDate,
-      handleChange,
+      educationEditStatus,
+      handleChangeEducation,
       submitForm,
       closeEducationForm,
     } = this.props;
@@ -17,19 +13,16 @@ class Education extends Component {
     return (
       <div className="card mt-4 p-4">
         <h1 className="text-center mb-5 mt-3">Education</h1>
-        <div className="card">
-          Degree: {degree}, University: {university}, start: {startDate} - end:{' '}
-          {endDate}
-        </div>
+        <div className="card"></div>
         <div className="text-center">
-          {editStatus ? (
+          {educationEditStatus ? (
             <div>
               <form
                 onSubmit={(e) => submitForm(e)}
                 className="d-flex flex-column align-items-center"
               >
                 <input
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => handleChangeEducation(e)}
                   className="form-control w-75 mb-5 border-top-0"
                   type="text"
                   id="degree"
@@ -37,6 +30,7 @@ class Education extends Component {
                   required
                 ></input>
                 <input
+                  onChange={(e) => handleChangeEducation(e)}
                   className="form-control w-75 mb-5 border-top-0"
                   type="text"
                   id="university"
@@ -47,6 +41,7 @@ class Education extends Component {
                   <div className="w-75 mr-5">
                     <label htmlFor="date-start">From</label>
                     <input
+                      onChange={(e) => handleChangeEducation(e)}
                       id="date-start"
                       className="form-control border-top-0"
                       type="date"
@@ -56,6 +51,7 @@ class Education extends Component {
                   <div className="w-75">
                     <label htmlFor="date-end">to</label>
                     <input
+                      onChange={(e) => handleChangeEducation(e)}
                       id="date-end"
                       className="form-control border-top-0"
                       type="date"
