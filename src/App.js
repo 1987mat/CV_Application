@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+// import uniqid from 'uniqid';
 import Info from './components/Info';
 import Education from './components/Education';
 // import Experience from './components/Experience';
@@ -15,6 +16,14 @@ class App extends Component {
       showFirstName: false,
       showLastName: false,
       educationEditStatus: false,
+      education: {
+        degree: '',
+        university: '',
+        startDate: '',
+        endDate: '',
+      },
+      educationList: [],
+      showDegreeField: false,
     };
   }
 
@@ -32,6 +41,7 @@ class App extends Component {
         showFirstName: false,
       });
     }
+
     //Edit Mode
     if (e.target.id === 'last') {
       this.setState({
@@ -43,6 +53,12 @@ class App extends Component {
         lastName: this.state.lastName,
         showLastName: false,
       });
+    }
+
+    if (e.target.id === 'edit-degree') {
+      this.setState({ showDegreeField: true });
+    } else if (e.target.id === 'confirm-degree') {
+      this.setState({ showDegreeField: false });
     }
   };
 
@@ -67,28 +83,43 @@ class App extends Component {
   };
 
   handleChangeEducation = (e) => {
-    const value = e.target.value;
+    let key = e.target.name;
+    let value = e.target.value;
+
+    this.setState({
+      ...this.state,
+      education: {
+        ...this.state.education,
+        [key]: value,
+      },
+    });
   };
 
   submitForm = (e) => {
     e.preventDefault();
+    const { educationList, education } = this.state;
+    educationList.push(education);
+
+    this.setState({
+      ...this.state,
+      education: { degree: '', university: '', startDate: '', endDate: '' },
+      educationEditStatus: false,
+    });
   };
-
-  // const updatedTitles = [
-  //   ...this.state.education.titles,
-  //   { id: 1, name: 'mat' },
-  // ];
-
-  // this.setState({
-  //   education: {
-  //     editStatus: false,
-  //   },
-  // });
-  // };
 
   closeEducationForm = () => {
     this.setState({
       educationEditStatus: false,
+    });
+  };
+
+  // Delete saved education card
+  handleDelete = (id) => {
+    let updatedList = this.state.educationList.filter(
+      (item, index) => index !== id
+    );
+    this.setState({
+      educationList: updatedList,
     });
   };
 
@@ -113,6 +144,10 @@ class App extends Component {
             educationEditStatus={this.state.educationEditStatus}
             closeEducationForm={this.closeEducationForm}
             submitForm={this.submitForm}
+            educationList={this.state.educationList}
+            handleDelete={this.handleDelete}
+            handleClick={this.handleClick}
+            showDegreeField={this.state.showDegreeField}
           />
         </main>
         {/* <footer>
