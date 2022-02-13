@@ -45,7 +45,7 @@ class App extends Component {
   };
 
   // Edit single education card
-  editEducation = (e, education) => {
+  editEducation = (e, education, index) => {
     this.setState({
       ...this.state,
       [e.target.name]: !this.state[e.target.name],
@@ -54,6 +54,7 @@ class App extends Component {
       university: education.university,
       startDate: education.startDate,
       endDate: education.endDate,
+      id: index,
     });
   };
 
@@ -76,10 +77,9 @@ class App extends Component {
         endDate: this.state.endDate,
         id: this.state.id,
       };
+
       // New Education Mode
       if (!this.state.educationEditMode) {
-        console.log('new mode');
-
         this.setState({
           ...this.state,
           educationList: this.state.educationList.concat(qualificationObj),
@@ -92,21 +92,30 @@ class App extends Component {
         });
         // Edit Mode
       } else {
-        console.log('edit mode');
+        const { educationList } = this.state;
+
+        for (let i = 0; i < educationList.length; i++) {
+          if (i === qualificationObj.id) {
+            educationList.splice(i, 1, qualificationObj);
+          }
+        }
+
         this.setState({
           ...this.state,
+          educationList: educationList,
           degree: '',
           university: '',
           startDate: '',
           endDate: '',
           id: uuid(),
           educationMode: !this.state.educationMode,
+          educationEditMode: !this.state.educationEditMode,
         });
       }
     }
   };
 
-  // Delete saved education card
+  // Delete education card
   handleDelete = (id) => {
     let updatedList = this.state.educationList.filter(
       (item, index) => index !== id
