@@ -1,115 +1,109 @@
 import React, { Component } from 'react';
 import './App.css';
-// import uniqid from 'uniqid';
+import { v4 as uuid } from 'uuid';
 import Info from './components/Info';
 import Education from './components/Education';
 // import Experience from './components/Experience';
-// import Skills from './components/Skills';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      showFirstName: false,
-      showLastName: false,
-      educationEditStatus: false,
-      education: {
-        degree: '',
-        university: '',
-        startDate: '',
-        endDate: '',
-      },
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      linkedin: '',
+      infoCompleted: false,
+      degree: '',
+      university: '',
+      startDate: '',
+      endDate: '',
+      id: uuid(),
+      editMode: false,
       educationList: [],
       showDegreeField: false,
+      showUniField: false,
+      showStartDateField: false,
+      showEndDateField: false,
     };
   }
 
-  // User clicks edit icon
+  // User clicks edit button
   handleClick = (e) => {
-    // Edit Mode
-    if (e.target.id === 'first') {
-      this.setState({
-        showFirstName: true,
-      });
-      // Editing completed
-    } else if (e.target.id === 'first-name') {
-      this.setState({
-        firstName: this.state.firstName,
-        showFirstName: false,
-      });
-    }
-
-    //Edit Mode
-    if (e.target.id === 'last') {
-      this.setState({
-        showLastName: true,
-      });
-      // Editing completed
-    } else if (e.target.id === 'last-name') {
-      this.setState({
-        lastName: this.state.lastName,
-        showLastName: false,
-      });
-    }
-
-    if (e.target.id === 'edit-degree') {
-      this.setState({ showDegreeField: true });
-    } else if (e.target.id === 'confirm-degree') {
-      this.setState({ showDegreeField: false });
-    }
+    let key = e.target.name;
+    this.setState({
+      ...this.state,
+      [key]: !this.state[key],
+    });
   };
 
   // Get input values from users
   handleChange = (e) => {
-    if (e.target.id === 'first-name-input') {
-      this.setState({
-        firstName: e.target.value,
-      });
-    } else {
-      this.setState({
-        lastName: e.target.value,
-      });
-    }
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   };
 
-  // Add education button
+  // Show education form onclick
   handleClickAdd = () => {
     this.setState({
+      ...this.state,
       educationEditStatus: !this.state.educationEditStatus,
     });
   };
 
-  handleChangeEducation = (e) => {
-    let key = e.target.name;
-    let value = e.target.value;
-
+  // Edit single education card
+  handleEditEducationForm = (e, education) => {
     this.setState({
-      ...this.state,
-      education: {
-        ...this.state.education,
-        [key]: value,
-      },
+      [e.target.name]: !this.state[e.target.name],
+      degree: education.degree,
+      university: education.university,
+      startDate: education.startDate,
+      endDate: education.endDate,
+      editMode: !this.state.editMode,
     });
   };
 
+  // Submit Form
   submitForm = (e) => {
     e.preventDefault();
-    const { educationList, education } = this.state;
-    educationList.push(education);
 
     this.setState({
-      ...this.state,
-      education: { degree: '', university: '', startDate: '', endDate: '' },
-      educationEditStatus: false,
+      infoCompleted: !this.infoCompleted,
     });
+
+    // const { educationList } = this.state;
+
+    // let obj = {
+    //   degree: this.state.degree,
+    //   university: this.state.university,
+    //   startDate: this.state.startDate,
+    //   endDate: this.state.endDate,
+    //   id: this.state.id,
+    //   editMode: this.state.educationEditSingle,
+    // };
+
+    // educationList.push(obj);
+
+    // this.setState({
+    //   ...this.state,
+    //   degree: '',
+    //   university: '',
+    //   startDate: '',
+    //   endDate: '',
+    //   id: uuid(),
+    //   editMode: false,
+    //   educationEditStatus: false,
+    //   educationEditSingle: false,
+    // });
   };
 
   closeEducationForm = () => {
     this.setState({
       educationEditStatus: false,
+      educationEditSingle: false,
     });
   };
 
@@ -131,16 +125,20 @@ class App extends Component {
         </header>
         <main>
           <Info
-            handleClick={this.handleClick}
             handleChange={this.handleChange}
-            showFirstName={this.state.showFirstName}
-            showLastName={this.state.showLastName}
+            handleConfirm={this.handleConfirm}
             firstName={this.state.firstName}
             lastName={this.state.lastName}
+            email={this.state.email}
+            phone={this.state.phone}
+            linkedin={this.state.linkedin}
+            submitForm={this.submitForm}
+            infoCompleted={this.state.infoCompleted}
+            handleClick={this.handleClick}
           />
           <Education
             handleClickAdd={this.handleClickAdd}
-            handleChangeEducation={this.handleChangeEducation}
+            handleChange={this.handleChange}
             educationEditStatus={this.state.educationEditStatus}
             closeEducationForm={this.closeEducationForm}
             submitForm={this.submitForm}
@@ -148,6 +146,15 @@ class App extends Component {
             handleDelete={this.handleDelete}
             handleClick={this.handleClick}
             showDegreeField={this.state.showDegreeField}
+            showUniField={this.state.showUniField}
+            showStartDateField={this.state.showStartDateField}
+            showEndDateField={this.state.showEndDateField}
+            handleEditEducationForm={this.handleEditEducationForm}
+            degree={this.state.degree}
+            university={this.state.university}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+            educationEditSingle={this.state.educationEditSingle}
           />
         </main>
         {/* <footer>
