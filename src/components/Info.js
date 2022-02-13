@@ -21,20 +21,20 @@ class Info extends Component {
           // Show completed info //
           <div className="d-flex justify-content-center card p-4 text-center">
             <div>
-              <h3 className="font-weight-bold p-2">{firstName}</h3>
-              <h3 className="font-weight-bold p-2">{lastName}</h3>
+              <h3 className=" p-2">{firstName}</h3>
+              <h3 className=" p-2">{lastName}</h3>
               <div className="d-flex flex-row justify-content-center">
                 <ion-icon name="mail"></ion-icon>
-                <h5 className="font-weight-bold p-2">{email}</h5>
+                <h5 className=" p-2">{email}</h5>
               </div>
               <div className="d-flex flex-row justify-content-center">
                 <ion-icon name="call"></ion-icon>
-                <h5 className="font-weight-bold p-2">{phone}</h5>
+                <h5 className=" p-2">{phone}</h5>
               </div>
               {linkedin !== '' ? (
                 <div className="d-flex flex-row justify-content-center">
                   <ion-icon name="logo-linkedin"></ion-icon>
-                  <h5 className="font-weight-bold p-2">{linkedin}</h5>
+                  <h5 className=" p-2">{linkedin}</h5>
                 </div>
               ) : (
                 ''
@@ -43,16 +43,16 @@ class Info extends Component {
             <div>
               <button
                 onClick={(e) => handleClick(e)}
-                className="btn btn-primary btn-sm mt-4"
+                className="btn btn-secondary btn-sm mt-4"
                 name="infoCompleted"
               >
-                <ion-icon name="create"></ion-icon>
+                Edit
               </button>
             </div>
           </div>
         ) : (
           // Show Form
-          <form onSubmit={(e) => submitForm(e)}>
+          <form name="info-form" onSubmit={(e) => submitForm(e)}>
             <div className="d-flex justify-content-around mt-5">
               <div>
                 <div className="d-flex input-group mb-3">
@@ -128,7 +128,15 @@ class Info extends Component {
                 </div>
               </div>
             </div>
+
             <div className="mt-5 text-center button-save">
+              <button
+                onClick={(e) => handleClick(e)}
+                className="btn btn-secondary p-2 mr-2 btn-lg btn-light"
+                name="infoEditMode"
+              >
+                Cancel
+              </button>
               <button className="btn btn-primary p-2 btn-lg" type="submit">
                 Save
               </button>

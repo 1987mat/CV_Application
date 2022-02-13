@@ -16,17 +16,14 @@ class App extends Component {
       phone: '',
       linkedin: '',
       infoCompleted: false,
+      educationList: [],
       degree: '',
       university: '',
       startDate: '',
       endDate: '',
       id: uuid(),
-      editMode: false,
-      educationList: [],
-      showDegreeField: false,
-      showUniField: false,
-      showStartDateField: false,
-      showEndDateField: false,
+      educationMode: false,
+      educationEditMode: false,
     };
   }
 
@@ -42,27 +39,21 @@ class App extends Component {
   // Get input values from users
   handleChange = (e) => {
     this.setState({
+      ...this.state,
       [e.target.name]: e.target.value,
     });
   };
 
-  // Show education form onclick
-  handleClickAdd = () => {
+  // Edit single education card
+  editEducation = (e, education) => {
     this.setState({
       ...this.state,
-      educationEditStatus: !this.state.educationEditStatus,
-    });
-  };
-
-  // Edit single education card
-  handleEditEducationForm = (e, education) => {
-    this.setState({
       [e.target.name]: !this.state[e.target.name],
+      educationEditMode: !this.state.educationEditMode,
       degree: education.degree,
       university: education.university,
       startDate: education.startDate,
       endDate: education.endDate,
-      editMode: !this.state.editMode,
     });
   };
 
@@ -70,41 +61,49 @@ class App extends Component {
   submitForm = (e) => {
     e.preventDefault();
 
-    this.setState({
-      infoCompleted: !this.infoCompleted,
-    });
+    // Submit Info Form
+    if (e.target.name === 'info-form') {
+      this.setState({
+        ...this.state,
+        infoCompleted: !this.state.infoCompleted,
+      });
+      // Submit Education Form
+    } else if (e.target.name === 'ed-form') {
+      let qualificationObj = {
+        degree: this.state.degree,
+        university: this.state.university,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
+        id: this.state.id,
+      };
+      // New Education Mode
+      if (!this.state.educationEditMode) {
+        console.log('new mode');
 
-    // const { educationList } = this.state;
-
-    // let obj = {
-    //   degree: this.state.degree,
-    //   university: this.state.university,
-    //   startDate: this.state.startDate,
-    //   endDate: this.state.endDate,
-    //   id: this.state.id,
-    //   editMode: this.state.educationEditSingle,
-    // };
-
-    // educationList.push(obj);
-
-    // this.setState({
-    //   ...this.state,
-    //   degree: '',
-    //   university: '',
-    //   startDate: '',
-    //   endDate: '',
-    //   id: uuid(),
-    //   editMode: false,
-    //   educationEditStatus: false,
-    //   educationEditSingle: false,
-    // });
-  };
-
-  closeEducationForm = () => {
-    this.setState({
-      educationEditStatus: false,
-      educationEditSingle: false,
-    });
+        this.setState({
+          ...this.state,
+          educationList: this.state.educationList.concat(qualificationObj),
+          degree: '',
+          university: '',
+          startDate: '',
+          endDate: '',
+          id: uuid(),
+          educationMode: !this.state.educationMode,
+        });
+        // Edit Mode
+      } else {
+        console.log('edit mode');
+        this.setState({
+          ...this.state,
+          degree: '',
+          university: '',
+          startDate: '',
+          endDate: '',
+          id: uuid(),
+          educationMode: !this.state.educationMode,
+        });
+      }
+    }
   };
 
   // Delete saved education card
@@ -137,24 +136,18 @@ class App extends Component {
             handleClick={this.handleClick}
           />
           <Education
-            handleClickAdd={this.handleClickAdd}
             handleChange={this.handleChange}
-            educationEditStatus={this.state.educationEditStatus}
-            closeEducationForm={this.closeEducationForm}
-            submitForm={this.submitForm}
-            educationList={this.state.educationList}
             handleDelete={this.handleDelete}
             handleClick={this.handleClick}
-            showDegreeField={this.state.showDegreeField}
-            showUniField={this.state.showUniField}
-            showStartDateField={this.state.showStartDateField}
-            showEndDateField={this.state.showEndDateField}
-            handleEditEducationForm={this.handleEditEducationForm}
+            editEducation={this.editEducation}
+            educationMode={this.state.educationMode}
+            educationEditMode={this.state.educationEditMode}
+            submitForm={this.submitForm}
+            educationList={this.state.educationList}
             degree={this.state.degree}
             university={this.state.university}
             startDate={this.state.startDate}
             endDate={this.state.endDate}
-            educationEditSingle={this.state.educationEditSingle}
           />
         </main>
         {/* <footer>
