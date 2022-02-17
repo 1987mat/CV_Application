@@ -1,7 +1,7 @@
 {
   "name": "cv-project",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "http://1987mat.github.io/CV_Application",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
