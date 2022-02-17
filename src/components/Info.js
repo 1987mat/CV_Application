@@ -15,11 +15,14 @@ class Info extends Component {
     } = this.props;
 
     return (
-      <div className="card rounded p-5">
+      <div
+        style={{ boxShadow: '4px 2px 2px #428bca' }}
+        className="card rounded p-5"
+      >
         <h1 className="text-center mb-5">Personal Information</h1>
         {infoCompleted ? (
-          // Show completed info //
-          <div className="d-flex justify-content-center card p-4 text-center">
+          // SHOW COMPLETED INFO //
+          <div className="d-flex flex-column justify-content-center p-4 text-center">
             <div>
               <h3 className=" p-2">{firstName}</h3>
               <h3 className=" p-2">{lastName}</h3>
@@ -51,9 +54,9 @@ class Info extends Component {
             </div>
           </div>
         ) : (
-          // Show Form
+          // SHOW FORM
           <form name="info-form" onSubmit={(e) => submitForm(e)}>
-            <div className="d-flex justify-content-around mt-5">
+            <div className="info-form d-flex justify-content-around mt-5">
               <div>
                 <div className="d-flex input-group mb-3">
                   <input

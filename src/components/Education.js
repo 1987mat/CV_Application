@@ -9,7 +9,7 @@ class Education extends Component {
       educationList,
       handleDelete,
       handleClick,
-      editEducation,
+      handleEditEducation,
       degree,
       university,
       startDate,
@@ -17,35 +17,42 @@ class Education extends Component {
     } = this.props;
 
     return (
-      <div className="card mt-4 p-4">
+      <div
+        style={{ boxShadow: '4px 2px 2px #428bca' }}
+        className="card mt-4 p-4"
+      >
         <h1 className="text-center mb-5 mt-3">Education</h1>
         {!educationMode ? (
           educationList.map((education, index) => {
             return (
-              // Show completed education cards
+              // SHOW COMPLETED EDUCATION CARD
               <div
                 key={education.id}
                 className="d-flex flex-column justify-content-center align-items-center"
               >
                 <div
-                  style={{ boxShadow: '2px 2px 2px gray' }}
+                  style={{ boxShadow: '2px 2px 2px #428bca' }}
                   className="card w-25  p-2 mb-5 bg-body rounded text-center"
                 >
                   <div className="mx-auto mb-1 p-1">
                     <h5>Degree: {education.degree}</h5>
                     <h5>University: {education.university}</h5>
-                    <h5>From: {education.startDate}</h5>
+                    <h5>
+                      From:
+                      {education.startDate}
+                    </h5>
                     <h5>To: {education.endDate}</h5>
                   </div>
                   <div className="mx-auto">
                     <button
-                      onClick={() => handleDelete(index)}
+                      onClick={(e) => handleDelete(index, e)}
                       className="btn btn-sm mr-2"
+                      name="delete-ed"
                     >
                       Delete
                     </button>
                     <button
-                      onClick={(e) => editEducation(e, education, index)}
+                      onClick={(e) => handleEditEducation(e, education, index)}
                       className="btn btn-secondary btn-sm"
                       name="educationMode"
                     >
@@ -57,7 +64,7 @@ class Education extends Component {
             );
           })
         ) : (
-          // Show Education Form
+          // SHOW FORM
           <div>
             <form
               name="ed-form"
