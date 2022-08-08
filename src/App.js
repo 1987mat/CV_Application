@@ -206,7 +206,7 @@ const App = () => {
       <header>
         <h1 className="title mb-4 display-4 text-center">Resume Builder App</h1>
       </header>
-      <main className="mb-5">
+      <main className="mb-6 d-flex flex-column">
         <Info
           handleChange={handleChange}
           firstName={state.firstName}

@@ -5,9 +5,18 @@
   box-sizing: border-box;
 }
 
+header {
+  margin-bottom: 5em;
+}
+
 .title {
   font-weight: 600;
   color: #428bca;
+}
+
+main {
+  padding: 2em;
+  padding-bottom: 10em;
 }
 
 ion-icon {
