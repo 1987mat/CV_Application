@@ -1,6 +1,6 @@
 # Resume Builder App
 
-<p>Build your resume/CV built with React JS functional components and hooks.</p>
+<p>Build your resume app developed with React functional components and hooks.</p>
 
 ## Links
 
@@ -41,12 +41,10 @@ For running the server file on you can use this command.
 
 ## Built With
 
-- React JS
-- Node
-- NPM
-- Webpack
 - HTML
 - Bootstrap CSS
+- React
+- Webpack
 
 ## Author
 
