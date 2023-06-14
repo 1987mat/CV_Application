@@ -4,7 +4,7 @@ const Info = (props) => {
   return (
     <div
       style={{ boxShadow: '4px 2px 2px #428bca' }}
-      className="card rounded p-5"
+      className="card rounded p-5 info-section"
     >
       <h1 className="text-center mb-5">Personal Information</h1>
       {props.infoCompleted ? (
@@ -43,7 +43,7 @@ const Info = (props) => {
         <form name="info-form" onSubmit={(e) => props.submitForm(e)}>
           <div className="info-form d-flex justify-content-around mt-5">
             <div>
-              <div className="d-flex input-group mb-3">
+              <div className="d-flex input-group">
                 <input
                   className="form-control"
                   onChange={(e) => props.handleChange(e)}
@@ -70,13 +70,13 @@ const Info = (props) => {
                 ></input>
               </div>
             </div>
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column second-column">
               <div className="d-flex input-group">
                 <label htmlFor="email">
                   <ion-icon name="mail"></ion-icon>
                 </label>
                 <input
-                  className="form-control border-top-0"
+                  className="form-control"
                   onChange={(e) => props.handleChange(e)}
                   type="email"
                   name="email"
@@ -90,7 +90,7 @@ const Info = (props) => {
                   <ion-icon name="call"></ion-icon>
                 </label>
                 <input
-                  className="form-control border-top-0"
+                  className="form-control"
                   onChange={(e) => props.handleChange(e)}
                   type="tel"
                   id="phone"
@@ -106,7 +106,7 @@ const Info = (props) => {
                   <ion-icon name="logo-linkedin"></ion-icon>
                 </label>
                 <input
-                  className="form-control border-top-0"
+                  className="form-control"
                   onChange={(e) => props.handleChange(e)}
                   type="text"
                   id="linkedin"

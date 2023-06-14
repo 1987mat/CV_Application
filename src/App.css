@@ -12,6 +12,7 @@ header {
 .title {
   font-weight: 600;
   color: #428bca;
+  margin-top: 0.5em;
 }
 
 main {
@@ -38,6 +39,31 @@ button {
   margin-bottom: 0.8em;
 }
 
+.form-control {
+  width: 100%;
+  border-radius: 4px !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: none;
+}
+
+.second-column .input-group {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.second-column .input-group label {
+  position: absolute;
+  z-index: 2;
+  top: 0.25rem;
+  left: 0;
+}
+
+.second-column .input-group label ion-icon {
+  color: gray !important;
+}
+
 .footer-span {
   font-size: 1.2rem;
   font-weight: 700;
@@ -48,28 +74,43 @@ button {
 /* Phone Port */
 @media only screen and (min-width: 320px) {
   html {
-    font-size: 30%;
+    font-size: 70%;
   }
 
   .info-form {
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 1em;
   }
 
   .form-control {
     padding: 1.5em;
     height: 1.5em;
   }
+
+  .date-wrapper {
+    flex-direction: column;
+  }
+
+  .date-wrapper div {
+    margin: 0;
+  }
 }
 
 /* Phone Land */
 @media only screen and (min-width: 576px) {
-  html {
-    font-size: 60%;
-  }
-
   .info-form {
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  .date-wrapper {
+    flex-direction: initial;
+  }
+
+  .date-wrapper div {
+    margin: initial;
   }
 }
 
@@ -83,6 +124,10 @@ button {
 /* Desktop */
 @media only screen and (min-width: 992px) {
   html {
-    font-size: 90%;
+    font-size: 100%;
+  }
+
+  .info-form {
+    align-items: initial;
   }
 }

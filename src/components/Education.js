@@ -57,7 +57,7 @@ const Education = (props) => {
           >
             <input
               onChange={(e) => props.handleChange(e)}
-              className="form-control w-75 mb-5 border-top-0"
+              className="form-control w-75 mb-5"
               id="input-degree"
               type="text"
               name="degree"
@@ -67,14 +67,14 @@ const Education = (props) => {
             ></input>
             <input
               onChange={(e) => props.handleChange(e)}
-              className="form-control w-75 mb-5 border-top-0"
+              className="form-control w-75 mb-5"
               type="text"
               name="university"
               value={props.university}
               placeholder="University"
               required
             ></input>
-            <div className="d-flex mb-5 w-75">
+            <div className="d-flex mb-5 w-75 date-wrapper">
               <div className="w-75 mr-5">
                 <label htmlFor="start-date">From</label>
                 <input
@@ -82,7 +82,7 @@ const Education = (props) => {
                   id="start-date"
                   name="startDate"
                   value={props.startDate}
-                  className="form-control border-top-0"
+                  className="form-control"
                   type="date"
                   required
                 ></input>
@@ -94,7 +94,7 @@ const Education = (props) => {
                   id="date-end"
                   name="endDate"
                   value={props.endDate}
-                  className="form-control border-top-0"
+                  className="form-control"
                   type="date"
                   required
                 ></input>
@@ -108,7 +108,6 @@ const Education = (props) => {
               >
                 Cancel
               </button>
-
               <button className="btn btn-primary btn-lg p-2" type="submit">
                 Save
               </button>

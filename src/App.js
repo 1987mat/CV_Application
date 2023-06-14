@@ -202,7 +202,7 @@ const App = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-1">
       <header>
         <h1 className="title mb-4 display-4 text-center">Resume Builder App</h1>
       </header>

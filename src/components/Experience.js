@@ -53,7 +53,7 @@ const Experience = (props) => {
           >
             <input
               onChange={(e) => props.handleChange(e)}
-              className="form-control w-75 mb-5 border-top-0"
+              className="form-control w-75 mb-5"
               type="text"
               name="title"
               placeholder="Title"
@@ -62,19 +62,19 @@ const Experience = (props) => {
             ></input>
             <input
               onChange={(e) => props.handleChange(e)}
-              className="form-control w-75 mb-5 border-top-0"
+              className="form-control w-75 mb-5"
               type="text"
               name="company"
               placeholder="Company"
               value={props.company}
               required
             ></input>
-            <div className="d-flex mb-5 w-75">
+            <div className="d-flex mb-5 w-75 date-wrapper">
               <div className="w-75 mr-5">
                 <label htmlFor="start">From</label>
                 <input
                   onChange={(e) => props.handleChange(e)}
-                  className="form-control border-top-0"
+                  className="form-control"
                   id="start"
                   type="date"
                   value={props.expStartDate}
@@ -86,7 +86,7 @@ const Experience = (props) => {
                 <label htmlFor="end">to</label>
                 <input
                   onChange={(e) => props.handleChange(e)}
-                  className="form-control border-top-0"
+                  className="form-control"
                   id="end"
                   value={props.expEndDate}
                   type="date"
