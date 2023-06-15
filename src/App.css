@@ -110,6 +110,11 @@ input[type='date'] {
   .date-wrapper div {
     margin: 0;
   }
+
+  .education-card,
+  .experience-card {
+    width: 60vw !important;
+  }
 }
 
 /* Phone Land */
@@ -125,6 +130,11 @@ input[type='date'] {
 
   .date-wrapper div {
     margin: initial;
+  }
+
+  .education-card,
+  .experience-card {
+    width: 35vw !important;
   }
 }
 
@@ -143,5 +153,10 @@ input[type='date'] {
 
   .info-form {
     align-items: initial;
+  }
+
+  .education-card,
+  .experience-card {
+    width: 30vw !important;
   }
 }

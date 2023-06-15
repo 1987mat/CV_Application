@@ -14,16 +14,23 @@ const Education = (props) => {
             >
               <div
                 style={{ boxShadow: '2px 2px 2px #428bca' }}
-                className="card w-25  p-2 mb-5 bg-body rounded text-center"
+                className="card w-25 p-2 mb-5 bg-body rounded education-card"
               >
-                <div className="mx-auto mb-1 p-1">
-                  <h5>Degree: {education.degree}</h5>
-                  <h5>University: {education.university}</h5>
+                <div className="mx-auto mb-3 p-2">
                   <h5>
-                    From:
+                    <strong>Degree: </strong> {education.degree}
+                  </h5>
+                  <h5>
+                    <strong>University: </strong>
+                    {education.university}
+                  </h5>
+                  <h5>
+                    <strong>From: </strong>
                     {education.startDate}
                   </h5>
-                  <h5>To: {education.endDate}</h5>
+                  <h5>
+                    <strong>To: </strong> {education.endDate}
+                  </h5>
                 </div>
                 <div className="mx-auto">
                   <button

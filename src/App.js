@@ -245,7 +245,7 @@ const App = () => {
           experienceList={state.experienceList}
         />
       </main>
-      <footer className="text-center mt-5">
+      <footer className="text-center mt-5 pb-2">
         <span className="footer-span">Developed by Mat</span>
         <a
           className="text-dark"

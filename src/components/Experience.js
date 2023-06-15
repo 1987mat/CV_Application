@@ -14,13 +14,23 @@ const Experience = (props) => {
             >
               <div
                 style={{ boxShadow: '2px 2px 2px #428bca' }}
-                className="card w-25  p-2 mb-5 bg-body rounded text-center"
+                className="card w-25 p-2 mb-5 bg-body rounded experience-card"
               >
-                <div className="mx-auto mb-1 p-1">
-                  <h5>Title: {experience.title}</h5>
-                  <h5>Company: {experience.company}</h5>
-                  <h5 className="text-from">From: {experience.expStartDate}</h5>
-                  <h5 className="text-to">To: {experience.expEndDate}</h5>
+                <div className="mx-auto mb-3 p-2">
+                  <h5>
+                    <strong>Title: </strong>
+                    {experience.title}
+                  </h5>
+                  <h5>
+                    <strong>Company: </strong>
+                    {experience.company}
+                  </h5>
+                  <h5 className="text-from">
+                    <strong>From:</strong> {experience.expStartDate}
+                  </h5>
+                  <h5 className="text-to">
+                    <strong>To:</strong> {experience.expEndDate}
+                  </h5>
                 </div>
                 <div className="mx-auto">
                   <button
