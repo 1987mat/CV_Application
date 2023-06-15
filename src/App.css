@@ -44,6 +44,8 @@ button {
   border-radius: 4px !important;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .second-column .input-group {
@@ -53,11 +55,16 @@ button {
   align-items: center;
 }
 
+.second-column .form-control {
+  padding-left: 2.5em;
+}
+
 .second-column .input-group label {
   position: absolute;
   z-index: 2;
   top: 0.25rem;
   left: 0;
+  z-index: 10;
 }
 
 .second-column .input-group label ion-icon {
